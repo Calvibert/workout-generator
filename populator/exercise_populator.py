@@ -3,7 +3,7 @@ import sys
 from firebase import firebase
 import exercise_populator_config as conf
 
-firebase = firebase.FirebaseApplication('https://healthifier-f583f.firebaseio.com', None)
+firebase = firebase.FirebaseApplication('https://workout-generator-f5895.firebaseio.com/ ', None)
 
 muscles = conf.CONST_MUSCLES
 
