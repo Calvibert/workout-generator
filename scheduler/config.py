@@ -64,7 +64,7 @@ CONST_MAP_GOAL_QUANTITY = {
     }
 }
 
-CONST_FIREBASE_URL = 'https://workout-generator-f5895.firebaseio.com'
+CONST_FIREBASE_URL = 'https://workout-generator-f5894.firebaseio.com'
 
 CONST_DIFFICULTY_LEVEL_EASY = 1
 
