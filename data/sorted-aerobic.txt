@@ -1,0 +1,5 @@
+Walking, Aerobics
+Running, Aerobics
+Bicycling, Aerobics
+Rowing, Aerobics
+Swimming, Aerobics
