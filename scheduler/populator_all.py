@@ -2,10 +2,8 @@
 # Run this script locally to generate a weekly workout for all users
 #
 
-import sys
-sys.path.insert(0,'C:/Users/samue/Projects/healthifier/backend/')
-import scripts.Schedule.config as conf
-import scripts.Schedule.model_factory as factory
+import config as conf
+import model_factory as factory
 from firebase import firebase as firebase
 
 firebase = firebase.FirebaseApplication(conf.CONST_FIREBASE_URL, None)

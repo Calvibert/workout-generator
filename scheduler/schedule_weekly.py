@@ -75,7 +75,7 @@ class ScheduleModelWeekly(model.ScheduleModel):
             self.f_b.put(path, type, user_muscles, connection=None)
 
         list = []
-        for i in range(0, len(activity_count)):
+        for _ in range(0, len(activity_count)):
             list.append(updated_muscle_group[random.randrange(0, len(updated_muscle_group))])
             updated_muscle_group.remove(list[-1])
 
@@ -92,7 +92,7 @@ class ScheduleModelWeekly(model.ScheduleModel):
         for index, muscle in enumerate(muscle_list):
             for exercise in exercises[muscle]:
                 exercises_array.append(exercise)
-            for x in range(0, exercise_count[index]):
+            for _ in range(0, exercise_count[index]):
                 array.append(exercises_array[random.randrange(0, len(exercises_array))])
         if self.previously_missed[muscle_type] and self.adapt_flag:
             for entry in self.previously_missed[muscle_type]:

@@ -3,8 +3,7 @@
 #
 
 import sys
-sys.path.insert(0,'C:/Users/samue/Projects/healthifier/backend/')
-import scripts.Schedule.model_factory as factory
+import model_factory as factory
 
 
 print('Enter the user ID: ')
