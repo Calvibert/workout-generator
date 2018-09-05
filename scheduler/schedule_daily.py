@@ -2,11 +2,9 @@
 # Created by Samuel Dufresne on 2018-03-23
 #
 
-import sys
-sys.path.insert(0,'C:/Users/samue/Projects/healthifier/backend/')
-import scripts.Schedule.config as conf
-import scripts.Schedule.Library.date as date_lib
-import scripts.Schedule.model as model
+import config as conf
+import Library.date as date_lib
+import schedule as model
 
 
 class ScheduleModelDaily(model.ScheduleModel):
@@ -50,7 +48,7 @@ class ScheduleModelDaily(model.ScheduleModel):
         self.exercises = self.build_json()
         date = date_lib.get_monday()
         path = '/users/' + self.user_id + '/workouts'
-        result = self.f_b.put(path, date, self.exercises)
+        result = self.f_b.put(path, date, self.exercises, connection=None)
         return result
 
     """----------------------------------------

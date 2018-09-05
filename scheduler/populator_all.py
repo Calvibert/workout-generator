@@ -9,7 +9,7 @@ import scripts.Schedule.model_factory as factory
 from firebase import firebase as firebase
 
 firebase = firebase.FirebaseApplication(conf.CONST_FIREBASE_URL, None)
-user_ids = firebase.get('/users/', None)
+user_ids = firebase.get('/users/', None, connection=None)
 
 for id in user_ids:
     model = factory.ScheduleModelFactory(id).dispatch()

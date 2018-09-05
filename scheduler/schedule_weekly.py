@@ -1,7 +1,7 @@
 import random
-import scripts.Schedule.config as conf
-import scripts.Schedule.Library.date as date_lib
-import scripts.Schedule.model as model
+import config as conf
+import Library.date as date_lib
+import schedule as model
 
 
 class ScheduleModelWeekly(model.ScheduleModel):
@@ -42,13 +42,13 @@ class ScheduleModelWeekly(model.ScheduleModel):
         for key in self.exercises:
             t_muscles = self.get_muscles(key)
             t_exercises = self.get_exercises(key, t_muscles)
-            self.exercises[key] = t_exercises * self.difficulty
+            self.exercises[key] = t_exercises
 
         self.exercises = self.split_by_days()
         self.exercises = self.build_json()
         date = date_lib.get_monday()
         path = '/users/' + self.user_id + '/workouts'
-        result = self.f_b.put(path, date, self.exercises)
+        result = self.f_b.put(path, date, self.exercises, connection=None)
         return result
 
     """----------------------------------------
@@ -72,15 +72,15 @@ class ScheduleModelWeekly(model.ScheduleModel):
         if len(updated_muscle_group) < len(activity_count):
             updated_muscle_group = conf.CONST_MUSCLES[muscle_type][:]
             user_muscles = []
-            self.f_b.put(path, type, user_muscles)
+            self.f_b.put(path, type, user_muscles, connection=None)
 
         list = []
-        for x in range(0, len(activity_count)):
+        for i in range(0, len(activity_count)):
             list.append(updated_muscle_group[random.randrange(0, len(updated_muscle_group))])
             updated_muscle_group.remove(list[-1])
 
         user_muscles = user_muscles + list
-        self.f_b.put(path, muscle_type, user_muscles)
+        self.f_b.put(path, muscle_type, user_muscles, connection=None)
         return list
 
     # Returns a randomized list of exercises

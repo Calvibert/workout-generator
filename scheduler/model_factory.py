@@ -1,24 +1,20 @@
 #
 # Factory of model
 #
-# Created by Samuel Dufresne on 2018-04-13
-#
 
-import sys
-sys.path.insert(0,'C:/Users/samue/Projects/healthifier/backend/')
 from firebase import firebase as firebase
-import scripts.Schedule.config as conf
 from random import randint
-import scripts.Schedule.model_weekly as weekly
-import scripts.Schedule.model_daily as daily
-import scripts.Schedule.Library.date as date
+import config as conf
+import schedule_weekly as weekly
+import schedule_daily as daily
+import Library.date as date
 
 
 class ScheduleModelFactory():
 
     def __init__(self, user_id):
         self.f_b = firebase.FirebaseApplication(conf.CONST_FIREBASE_URL, None)
-        self.user_repo = self.f_b.get('/users/', None)
+        self.user_repo = self.f_b.get('/users/', None, connection=None)
         self.user = None
         self.user_id = user_id
         self.schema = None
@@ -34,14 +30,14 @@ class ScheduleModelFactory():
         if self.schema == 1:
             return weekly.ScheduleModelWeekly()
         if self.schema == 2:
-                return daily.ScheduleModelDaily()
+            return daily.ScheduleModelDaily()
         return 'User does not exist'
 
         # A/B test: Issue #23
     def init_adaptive_schedule(self):
         path = '/users/' + self.user_id + '/settings/'
         self.schema = randint(1, 2)
-        self.f_b.put(path, 'adaptive_schema', self.schema)
+        self.f_b.put(path, 'adaptive_schema', self.schema, connection=None)
 
     def user_exists(self):
         return self.user_repo.get(self.user_id)

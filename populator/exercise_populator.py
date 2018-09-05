@@ -25,12 +25,12 @@ for exercises in f:
     muscle = exercises[1].strip()
     if exercise_type in muscles:
         if muscle in muscles[exercise_type]:
-            getMuscleGroup = firebase.get(path, muscle)
+            getMuscleGroup = firebase.get(path, muscle, connection=None)
             position = path + '/' + muscle
             child = {'name': name}
-            firebase.put(position, name, child)
+            firebase.put(position, name, child, connection=None)
     else:
-        getMuscleGroup = firebase.get(path, muscle)
+        getMuscleGroup = firebase.get(path, muscle, connection=None)
         position = path + '/' + muscle
         child = {'name': name}
-        firebase.put(position, name, child)
+        firebase.put(position, name, child, connection=None)

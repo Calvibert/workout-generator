@@ -7,7 +7,7 @@
 
 from abc import ABCMeta, abstractmethod
 from firebase import firebase as firebase
-import scripts.Schedule.config as conf
+import config as conf
 import math
 
 
@@ -16,8 +16,8 @@ class ScheduleModel(object):
 
     def __init__(self):
         self.f_b = firebase.FirebaseApplication(conf.CONST_FIREBASE_URL, None)
-        self.user_repo = self.f_b.get('/users/', None)
-        self.all_exercises = self.f_b.get('/exercises', None)
+        self.user_repo = self.f_b.get('/users/', None, connection=None)
+        self.all_exercises = self.f_b.get('/exercises', None, connection=None)
         self.muscles = conf.CONST_MUSCLES
         self.user_id = None
         self.user = None
@@ -51,7 +51,7 @@ class ScheduleModel(object):
             daily_exer = {}
             for key in all_exercises:
                 daily_exer[key] = all_exercises[key][:exec_slice[key]]
-                for x in range(0, exec_slice[key]):
+                for _ in range(0, exec_slice[key]):
                     all_exercises[key].pop(0)
             new_dict[day] = daily_exer
         for key in all_exercises:
