@@ -1,1 +1,0 @@
-# Upper-lower splitter for the exercise list

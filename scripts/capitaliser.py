@@ -9,7 +9,6 @@ filename = sys.stdin.readline()
 filename = filename[0:len(filename)-1]
 
 f = open(filename, 'r')
-
 exl = []
 
 for ex in f:
@@ -27,7 +26,6 @@ for ex in f:
     exl.append("".join(l).rstrip())
 
 
-print(exl)
 output_filename = 'sorted-' + filename
 o_stdout = sys.stdout
 f = open(output_filename, 'w')
